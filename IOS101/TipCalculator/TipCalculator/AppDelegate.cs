@@ -19,8 +19,14 @@ namespace TipCalculator
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
+            // create a new window instance
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+            // assign the root view controller
+            Window.RootViewController = new MyViewController();
+
+            // make the window visible
+            Window.MakeKeyAndVisible();
 
             return true;
         }
