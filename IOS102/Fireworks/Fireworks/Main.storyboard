@@ -58,6 +58,15 @@
                                     <action selector="SliderSize_ValueChanged:" destination="BYZ-38-t0r" id="1032" eventType="valueChanged"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" lineBreakMode="middleTruncation" id="1563" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="353" y="64" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0" green="0.52549019607843139" blue="1" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonAbout_TouchUpInside:" destination="BYZ-38-t0r" id="1567" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="678" firstItem="445" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16"/>
@@ -74,17 +83,69 @@
                             <constraint id="731" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="450" secondAttribute="trailing" constant="18"/>
                             <constraint id="732" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="450" secondAttribute="bottom" constant="16"/>
                             <constraint id="734" firstItem="450" firstAttribute="leading" secondItem="446" secondAttribute="leading" constant="66"/>
+                            <constraint id="1565" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="1563" secondAttribute="trailing" constant="39"/>
+                            <constraint id="1566" firstItem="1563" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="switchNight" destination="448" id="name-outlet-448"/>
                         <outlet property="buttonStart" destination="449" id="name-outlet-449"/>
                         <outlet property="sliderSize" destination="450" id="name-outlet-450"/>
+                        <outlet property="buttonAbout" destination="1563" id="name-outlet-1563"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <scene sceneID="1549">
+            <objects>
+                <viewController id="1550" sceneMemberID="viewController" customClass="AboutViewController" storyboardIdentifier="AboutViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1547"/>
+                        <viewControllerLayoutGuide type="bottom" id="1548"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1551">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Fireworks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1554" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="58" y="72" width="299" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1594" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="33" y="655" width="350" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="1" blue="0" alpha="1"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                                    <color key="titleShadowColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonClose_TouchUpInside:" destination="1550" id="1595" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1555" firstItem="1554" firstAttribute="centerX" secondItem="1551" secondAttribute="centerX" constant="0.5"/>
+                            <constraint id="1558" firstItem="1551" firstAttribute="trailingMargin" secondItem="1554" secondAttribute="trailing" constant="41"/>
+                            <constraint id="1559" firstItem="1554" firstAttribute="leading" secondItem="1551" secondAttribute="leadingMargin" constant="42"/>
+                            <constraint id="1560" firstItem="1554" firstAttribute="top" secondItem="1547" secondAttribute="bottom" constant="52"/>
+                            <constraint id="1663" firstItem="1551" firstAttribute="bottom" secondItem="1594" secondAttribute="bottom" constant="51"/>
+                            <constraint id="1695" firstItem="1594" firstAttribute="leading" secondItem="1551" secondAttribute="leadingMargin" constant="17"/>
+                            <constraint id="1696" firstItem="1551" firstAttribute="trailingMargin" secondItem="1594" secondAttribute="trailing" constant="15"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonClose" destination="1594" id="name-outlet-1594"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1552" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="578" y="1"/>
         </scene>
     </scenes>
     <resources>

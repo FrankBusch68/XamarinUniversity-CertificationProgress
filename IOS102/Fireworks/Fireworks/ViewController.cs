@@ -43,5 +43,11 @@ namespace Fireworks
         {
             fireworks.ScaleMax = (nfloat)sliderSize.Value;
         }
+
+        partial void ButtonAbout_TouchUpInside(UIButton sender)
+        {
+            var aboutVC = (AboutViewController)this.Storyboard.InstantiateViewController("AboutViewController");
+            this.PresentViewController(aboutVC, true, null);
+        }
     }
 }
