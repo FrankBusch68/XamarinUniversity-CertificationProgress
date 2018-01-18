@@ -39,8 +39,11 @@
                                     <constraint id="684" firstAttribute="width" constant="100"/>
                                 </constraints>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="448" translatesAutoresizingMaskIntoConstraints="NO">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="448" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="80" y="656" width="51" height="31"/>
+                                <connections>
+                                    <action selector="SwitchNight_ValueChanged:" destination="BYZ-38-t0r" id="1012" eventType="valueChanged"/>
+                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="449" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="139" y="655.5" width="259" height="32"/>
@@ -51,6 +54,9 @@
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="450" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="80" y="690" width="318" height="31"/>
+                                <connections>
+                                    <action selector="SliderSize_ValueChanged:" destination="BYZ-38-t0r" id="1032" eventType="valueChanged"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <constraints>
@@ -70,10 +76,18 @@
                             <constraint id="734" firstItem="450" firstAttribute="leading" secondItem="446" secondAttribute="leading" constant="66"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="switchNight" destination="448" id="name-outlet-448"/>
+                        <outlet property="buttonStart" destination="449" id="name-outlet-449"/>
+                        <outlet property="sliderSize" destination="450" id="name-outlet-450"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="xamlogo.png" width="75" height="67"/>
+    </resources>
 </document>
