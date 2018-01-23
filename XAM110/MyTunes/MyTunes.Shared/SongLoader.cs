@@ -10,27 +10,24 @@ namespace MyTunes
 	public static class SongLoader
 	{
 		const string Filename = "songs.json";
+        public static IStreamLoader Loader { get; set; }
 
-		public static async Task<IEnumerable<Song>> Load()
+        public static async Task<IEnumerable<Song>> Load()
 		{
-			using (var reader = new StreamReader(await OpenData())) {
+			using (var reader = new StreamReader(OpenData())) {
 				return JsonConvert.DeserializeObject<List<Song>>(await reader.ReadToEndAsync());
 			}
 		}
 
-        private static async Task<Stream> OpenData()
+		private static Stream OpenData()
 		{
+            if (Loader == null)
+            {
+                throw new Exception("Must set platform Loader before calling Load.");
+            }
 
-#if __IOS__
-            return System.IO.File.OpenRead(Filename);
-#elif __ANDROID__
-            return Android.App.Application.Context.Assets.Open(Filename);
-#elif WINDOWS_UWP
-            var storageFile = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync(Filename);
-            return await storageFile.OpenStreamForReadAsync();
-#endif
-            return null;
-		}
-    }
+            return Loader.GetStreamForFilename(Filename);
+        }
+	}
 }
 

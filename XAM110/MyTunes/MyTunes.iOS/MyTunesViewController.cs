@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using UIKit;
+using System.Linq;
 
 namespace MyTunes
 {
@@ -13,20 +12,14 @@ namespace MyTunes
 			TableView.ContentInset = new UIEdgeInsets (20, 0, 0, 0);
 		}
 
-        ViewControllerSource<Song> vcSongs;
-
-        public  override async void ViewDidLoad()
+		public async override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-            //TableView.Source = new ViewControllerSource<string>(TableView) {
-            //	DataSource = new string[] { "One", "Two", "Three" },
-            //};
-
             // Load the data
+            SongLoader.Loader = new StreamLoader();
             var data = await SongLoader.Load();
 
-            // Register the TableView's data source
             TableView.Source = new ViewControllerSource<Song>(TableView)
             {
                 DataSource = data.ToList(),

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace MyTunes
@@ -18,21 +17,8 @@ namespace MyTunes
         {
             base.OnNavigatedTo(e);
 
-            //var tempData = Enumerable.Range(1, 3).Select(i =>
-            //{
-            //    return new
-            //    {
-            //        Name = "Song" + i,
-            //        Artist = "Artist" + i,
-            //        Album = "Album" + i
-            //    };
-            //}).ToList();
-
-            //this.DataContext = tempData;
-
-            var data = await SongLoader.Load();
-
-            DataContext = data.ToList();
+            SongLoader.Loader = new StreamLoader();
+            this.DataContext = await SongLoader.Load();
         }
     }
 }
