@@ -157,9 +157,9 @@
     <Compile Include="MyTunesViewController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyTunes.Shared\MyTunes.Shared.csproj">
-      <Project>{813f0f03-c2f7-409e-a588-57ec326c6de5}</Project>
-      <Name>MyTunes.Shared</Name>
+    <ProjectReference Include="..\MyTunes.NetStandard\MyTunes.NetStandard.csproj">
+      <Project>{3ecf3a4a-e3a2-46f8-a887-86119ce28a11}</Project>
+      <Name>MyTunes.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
