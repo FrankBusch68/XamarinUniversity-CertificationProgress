@@ -46,5 +46,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyTunes.NetStandard\MyTunes.NetStandard.csproj">
+      <Project>{3ecf3a4a-e3a2-46f8-a887-86119ce28a11}</Project>
+      <Name>MyTunes.NetStandard</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
