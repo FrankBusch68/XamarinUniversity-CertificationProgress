@@ -9,14 +9,14 @@ namespace People
 {
 	public partial class App : Application
 	{
-		public App (string displayText)
+        public static PersonRepository PersonRepo { get; private set; }
+
+        public App (string filename)
 		{
 			InitializeComponent();
 
-            MainPage = new People.MainPage()
-            {
-                Text = displayText
-            };
+            PersonRepo = new PersonRepository(filename);
+            MainPage = new People.MainPage();
         }
 
 		protected override void OnStart ()
