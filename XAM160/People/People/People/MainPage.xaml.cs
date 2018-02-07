@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace People
 {
@@ -12,19 +13,18 @@ namespace People
             InitializeComponent();
         }
 
-        public void OnNewButtonClicked(object sender, EventArgs args)
+        public async void OnNewButtonClicked(object sender, EventArgs args)
         {
-            statusMessage.Text = "";
+            statusMessage.Text = string.Empty;
 
-            App.PersonRepo.AddNewPerson(newPerson.Text);
+            await App.PersonRepo.AddNewPersonAsync(newPerson.Text);
             statusMessage.Text = App.PersonRepo.StatusMessage;
         }
 
-        public void OnGetButtonClicked(object sender, EventArgs args)
+        public async void OnGetButtonClicked(object sender, EventArgs args)
         {
-            statusMessage.Text = "";
-
-            ObservableCollection<Person> people = new ObservableCollection<Person>(App.PersonRepo.GetAllPeople());
+            statusMessage.Text = string.Empty;
+            var people = await App.PersonRepo.GetAllPeopleAsync();
             peopleList.ItemsSource = people;
         }
     }
