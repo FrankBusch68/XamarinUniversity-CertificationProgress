@@ -10,3 +10,5 @@ Covers the essentials of the Xamarin platform.
 * [XAM110] Introduction to Cross-Platform Mobile Development
 * [XAM150] Consuming REST-based Web Services
 * [XAM160] SQLite and Mobile Data
+* [XAM120] Introduction to Xamarin.Forms
+
