@@ -12,3 +12,4 @@ Covers the essentials of the Xamarin platform.
 * [XAM160] SQLite and Mobile Data
 * [XAM120] Introduction to Xamarin.Forms
 * [XAM130] XAML in Xamarin.Forms
+* [XAM140] Resources and Styles in Xamarin.Forms
