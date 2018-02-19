@@ -13,3 +13,4 @@ Covers the essentials of the Xamarin platform.
 * [XAM120] Introduction to Xamarin.Forms
 * [XAM130] XAML in Xamarin.Forms
 * [XAM140] Resources and Styles in Xamarin.Forms
+* [XAM135] Layout in Xamarin.Forms
