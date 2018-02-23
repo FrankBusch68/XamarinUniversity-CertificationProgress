@@ -33,15 +33,15 @@ namespace Recipes
             base.SetSupportActionBar(toolbar);
 
             //
+            // Back button
+            //
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_arrow_back_white_24dp);
+            //
             // Show the list of ingredients
             //
             var list = FindViewById<ListView>(Resource.Id.ingredientsListView);
 			list.Adapter = adapter = new ArrayAdapter<Ingredient>(this, Android.Resource.Layout.SimpleListItem1, recipe.Ingredients);
-
-			//
-			// Navigation button: navigate back to the previous page
-			//
-			FindViewById<ImageButton>(Resource.Id.backButton).Click += (sender, e) => Finish();
 		}
 
         public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
@@ -59,13 +59,24 @@ namespace Recipes
                     recipe.IsFavorite = !recipe.IsFavorite;
                     SetFavoriteDrawable(recipe.IsFavorite);
                     break;
-
                 case Resource.Id.about:
                     StartActivity(typeof(AboutActivity));
                     break;
-                case Resource.Id.oneServing: SetServings(1); item.SetChecked(true); break;
-                case Resource.Id.twoServings: SetServings(2); item.SetChecked(true); break;
-                case Resource.Id.fourServings: SetServings(4); item.SetChecked(true); break;
+                case Resource.Id.oneServing:
+                    SetServings(1);
+                    item.SetChecked(true);
+                    break;
+                case Resource.Id.twoServings:
+                    SetServings(2);
+                    item.SetChecked(true);
+                    break;
+                case Resource.Id.fourServings:
+                    SetServings(4);
+                    item.SetChecked(true);
+                    break;
+                case Android.Resource.Id.Home:
+                    Finish();
+                    break;
             }
 
             return true;
