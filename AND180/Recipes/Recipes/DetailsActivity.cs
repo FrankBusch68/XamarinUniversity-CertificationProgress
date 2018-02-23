@@ -35,7 +35,7 @@ namespace Recipes
             // Inflate toolbar itens
             //
             toolbar.InflateMenu(Resource.Menu.actions);
-            toolbar.MenuItemClick += Toolbar_MenuItemClick;
+            toolbar.MenuItemClick += OnMenuItemClick;
 
             //
             // Show the list of ingredients
@@ -49,19 +49,12 @@ namespace Recipes
 			SetFavoriteDrawable(recipe.IsFavorite);
 
 			//
-			// Set up the "Number of servings" buttons
-			//
-			FindViewById<Button>(Resource.Id.oneServingButton).Click   += (sender, e) => SetServings(1);
-			FindViewById<Button>(Resource.Id.twoServingsButton).Click  += (sender, e) => SetServings(2);
-			FindViewById<Button>(Resource.Id.fourServingsButton).Click += (sender, e) => SetServings(4);
-
-			//
 			// Navigation button: navigate back to the previous page
 			//
 			FindViewById<ImageButton>(Resource.Id.backButton).Click += (sender, e) => Finish();
 		}
 
-        private void Toolbar_MenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        private void OnMenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
         {
             switch (e.Item.ItemId)
             {
@@ -73,6 +66,9 @@ namespace Recipes
                 case Resource.Id.about:
                     StartActivity(typeof(AboutActivity));
                     break;
+                case Resource.Id.oneServing: SetServings(1); e.Item.SetChecked(true); break;
+                case Resource.Id.twoServings: SetServings(2); e.Item.SetChecked(true); break;
+                case Resource.Id.fourServings: SetServings(4); e.Item.SetChecked(true); break;
             }
         }
 
