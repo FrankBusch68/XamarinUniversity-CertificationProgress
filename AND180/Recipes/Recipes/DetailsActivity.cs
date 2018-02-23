@@ -32,6 +32,12 @@ namespace Recipes
             toolbar.Title = recipe.Name;
 
             //
+            // Inflate toolbar itens
+            //
+            toolbar.InflateMenu(Resource.Menu.actions);
+            toolbar.MenuItemClick += Toolbar_MenuItemClick;
+
+            //
             // Show the list of ingredients
             //
             var list = FindViewById<ListView>(Resource.Id.ingredientsListView);
@@ -40,8 +46,6 @@ namespace Recipes
 			//
 			// Set up the "Favorite" toggle, we use different images for the 'on' and 'off' states
 			//
-			var toggle = FindViewById<ToggleButton>(Resource.Id.favoriteButton);
-			toggle.CheckedChange += OnFavoriteCheckedChange;
 			SetFavoriteDrawable(recipe.IsFavorite);
 
 			//
@@ -55,34 +59,30 @@ namespace Recipes
 			// Navigation button: navigate back to the previous page
 			//
 			FindViewById<ImageButton>(Resource.Id.backButton).Click += (sender, e) => Finish();
-
-			//
-			// Navigation button: navigate forward to the About page
-			//
-			FindViewById<Button>(Resource.Id.aboutButton).Click += (sender, e) => StartActivity(typeof(AboutActivity));
 		}
 
-		//
-		// Handler for the 'favorite' toggle button
-		//
-		void OnFavoriteCheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
-		{
-			recipe.IsFavorite = e.IsChecked; // update the recipe's state
+        private void Toolbar_MenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        {
+            switch (e.Item.ItemId)
+            {
+                case Resource.Id.addToFavorites:
+                    recipe.IsFavorite = !recipe.IsFavorite;
+                    SetFavoriteDrawable(recipe.IsFavorite);
+                    break;
 
-			SetFavoriteDrawable(e.IsChecked); // toggle the image used on the button
-		}
+                case Resource.Id.about:
+                    StartActivity(typeof(AboutActivity));
+                    break;
+            }
+        }
 
 		void SetFavoriteDrawable(bool isFavorite)
 		{
-			Drawable drawable = null;
-
-			if (isFavorite)
-				drawable = base.GetDrawable(Resource.Drawable.ic_favorite_white_24dp); // filled in 'heart' image
-			else
-				drawable = base.GetDrawable(Resource.Drawable.ic_favorite_border_white_24dp); // 'heart' image border only
-
-			FindViewById<ToggleButton>(Resource.Id.favoriteButton).SetCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
-		}
+            if (isFavorite)
+                toolbar.Menu.FindItem(Resource.Id.addToFavorites).SetIcon(Resource.Drawable.ic_favorite_white_24dp); // filled in 'heart' image
+            else
+                toolbar.Menu.FindItem(Resource.Id.addToFavorites).SetIcon(Resource.Drawable.ic_favorite_border_white_24dp); // 'heart' image border only
+        }
 		// Note: base.GetDrawable requires API level 21
 		// To run on earlier versions, change the minimum API level in the project settings and use the following code:
 		//void SetFavoriteDrawables(bool isFavorite)

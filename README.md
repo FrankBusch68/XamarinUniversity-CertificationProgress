@@ -2,6 +2,7 @@
 ## Course exercises ##
 Covers the essentials of the Xamarin platform.
 
+## Xamarin Professional Certification ##
 * [XAM101] Getting Started with Xamarin
 * [AND101] Introduction to Xamarin.Android
 * [IOS102] Introduction to the Xamarin Designer for iOS
@@ -14,3 +15,6 @@ Covers the essentials of the Xamarin platform.
 * [XAM130] XAML in Xamarin.Forms
 * [XAM140] Resources and Styles in Xamarin.Forms
 * [XAM135] Layout in Xamarin.Forms
+
+## Xamarin Developer Certification ##
+* [AND180] Toolbar and App Bar
