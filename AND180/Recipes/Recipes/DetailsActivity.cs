@@ -7,8 +7,8 @@ using Android.Widget;
 namespace Recipes
 {
 	[Activity(Label = "DetailsActivity")]
-	public class DetailsActivity : Activity
-	{
+	public class DetailsActivity : Android.Support.V7.App.AppCompatActivity
+    {
 		Recipe recipe;
 		ArrayAdapter adapter;
 
@@ -30,12 +30,7 @@ namespace Recipes
             //
             toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             toolbar.Title = recipe.Name;
-
-            //
-            // Inflate toolbar itens
-            //
-            toolbar.InflateMenu(Resource.Menu.actions);
-            toolbar.MenuItemClick += OnMenuItemClick;
+            base.SetSupportActionBar(toolbar);
 
             //
             // Show the list of ingredients
@@ -44,19 +39,21 @@ namespace Recipes
 			list.Adapter = adapter = new ArrayAdapter<Ingredient>(this, Android.Resource.Layout.SimpleListItem1, recipe.Ingredients);
 
 			//
-			// Set up the "Favorite" toggle, we use different images for the 'on' and 'off' states
-			//
-			SetFavoriteDrawable(recipe.IsFavorite);
-
-			//
 			// Navigation button: navigate back to the previous page
 			//
 			FindViewById<ImageButton>(Resource.Id.backButton).Click += (sender, e) => Finish();
 		}
 
-        private void OnMenuItemClick(object sender, Android.Support.V7.Widget.Toolbar.MenuItemClickEventArgs e)
+        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
         {
-            switch (e.Item.ItemId)
+            base.MenuInflater.Inflate(Resource.Menu.actions, menu);
+            SetFavoriteDrawable(recipe.IsFavorite);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(Android.Views.IMenuItem item)
+        {
+            switch (item.ItemId)
             {
                 case Resource.Id.addToFavorites:
                     recipe.IsFavorite = !recipe.IsFavorite;
@@ -66,10 +63,12 @@ namespace Recipes
                 case Resource.Id.about:
                     StartActivity(typeof(AboutActivity));
                     break;
-                case Resource.Id.oneServing: SetServings(1); e.Item.SetChecked(true); break;
-                case Resource.Id.twoServings: SetServings(2); e.Item.SetChecked(true); break;
-                case Resource.Id.fourServings: SetServings(4); e.Item.SetChecked(true); break;
+                case Resource.Id.oneServing: SetServings(1); item.SetChecked(true); break;
+                case Resource.Id.twoServings: SetServings(2); item.SetChecked(true); break;
+                case Resource.Id.fourServings: SetServings(4); item.SetChecked(true); break;
             }
+
+            return true;
         }
 
 		void SetFavoriteDrawable(bool isFavorite)
