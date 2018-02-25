@@ -18,3 +18,4 @@ Covers the essentials of the Xamarin platform.
 
 ## Xamarin Developer Certification ##
 * [AND180] Toolbar and App Bar
+* [XAM370] Diagnosing Memory Management Issues
