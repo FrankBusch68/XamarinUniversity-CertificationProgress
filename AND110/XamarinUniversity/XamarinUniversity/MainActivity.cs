@@ -14,6 +14,19 @@ namespace XamarinUniversity
 
             var instructorList = FindViewById<ListView>(Resource.Id.instructorListView);
             instructorList.Adapter = new ArrayAdapter<Instructor>(this, Android.Resource.Layout.SimpleListItem1, InstructorData.Instructors);
+
+            instructorList.ItemClick += OnItemClick;
+        }
+
+        private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var instructor = InstructorData.Instructors[e.Position];
+
+            var dialog = new AlertDialog.Builder(this);
+            dialog.SetTitle(instructor.Name);
+            dialog.SetMessage(instructor.Specialty);
+            dialog.SetNeutralButton("OK", delegate { });
+            dialog.Show();
         }
     }
 }
