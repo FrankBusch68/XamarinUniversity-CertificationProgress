@@ -13,7 +13,7 @@ namespace XamarinUniversity
             SetContentView(Resource.Layout.Main);
 
             var instructorList = FindViewById<ListView>(Resource.Id.instructorListView);
-            instructorList.Adapter = new ArrayAdapter<Instructor>(this, Android.Resource.Layout.SimpleListItem1, InstructorData.Instructors);
+            instructorList.Adapter = new InstructorAdapter(InstructorData.Instructors);
 
             instructorList.ItemClick += OnItemClick;
         }
@@ -24,7 +24,7 @@ namespace XamarinUniversity
 
             var dialog = new AlertDialog.Builder(this);
             dialog.SetTitle(instructor.Name);
-            dialog.SetMessage(instructor.Specialty);
+            dialog.SetMessage(instructor.Biography);
             dialog.SetNeutralButton("OK", delegate { });
             dialog.Show();
         }
