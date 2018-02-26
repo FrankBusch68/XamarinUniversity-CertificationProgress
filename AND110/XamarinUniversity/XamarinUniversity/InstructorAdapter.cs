@@ -11,16 +11,24 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 
 namespace XamarinUniversity
 {
-    public class InstructorAdapter : BaseAdapter<Instructor>
+    public class InstructorAdapter : BaseAdapter<Instructor>, ISectionIndexer
     {
         public List<Instructor> instructors { get; }
+        Java.Lang.Object[] sectionHeaders;
+        Dictionary<int, int> positionForSectionMap;
+        Dictionary<int, int> sectionForPositionMap;
 
         public InstructorAdapter(List<Instructor> instructors)
         {
             this.instructors = instructors;
+
+            sectionHeaders = SectionIndexerBuilder.BuildSectionHeaders(instructors);
+            positionForSectionMap = SectionIndexerBuilder.BuildPositionForSectionMap(instructors);
+            sectionForPositionMap = SectionIndexerBuilder.BuildSectionForPositionMap(instructors);
         }
 
         public override Instructor this[int position] => instructors[position];
@@ -58,6 +66,21 @@ namespace XamarinUniversity
             holder.Specialty.Text = instructors[position].Specialty;
 
             return view;
+        }
+
+        public Java.Lang.Object[] GetSections()
+        {
+            return sectionHeaders;
+        }
+
+        public int GetPositionForSection(int section)
+        {
+            return positionForSectionMap[section];
+        }
+
+        public int GetSectionForPosition(int position)
+        {
+            return sectionForPositionMap[position];
         }
     }
 }

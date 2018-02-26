@@ -16,6 +16,9 @@ namespace XamarinUniversity
             instructorList.Adapter = new InstructorAdapter(InstructorData.Instructors);
 
             instructorList.ItemClick += OnItemClick;
+
+            instructorList.FastScrollEnabled = true;
+            instructorList.FastScrollAlwaysVisible = true;
         }
 
         private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
