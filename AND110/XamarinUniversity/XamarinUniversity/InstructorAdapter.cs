@@ -35,22 +35,27 @@ namespace XamarinUniversity
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var view = convertView;
+
             if(view == null)
             {
                 var inflater = LayoutInflater.From(parent.Context);
                 view = inflater.Inflate(Resource.Layout.InstructorRow, parent, false);
+
+                view.Tag = new ViewHolder()
+                {
+                    Photo = view.FindViewById<ImageView>(Resource.Id.photoImageView),
+                    Name = view.FindViewById<TextView>(Resource.Id.nameTextView),
+                    Specialty = view.FindViewById<TextView>(Resource.Id.specialtyTextView)
+                };
             }
 
-            var photo = view.FindViewById<ImageView>(Resource.Id.photoImageView);
-            var name = view.FindViewById<TextView>(Resource.Id.nameTextView);
-            var specialty = view.FindViewById<TextView>(Resource.Id.specialtyTextView);
+            var holder = (ViewHolder)view.Tag;
 
             Stream stream = parent.Context.Assets.Open(instructors[position].ImageUrl);
-            Drawable drawable = Drawable.CreateFromStream(stream, null);
-            photo.SetImageDrawable(drawable);
+            holder.Photo.SetImageDrawable(ImageAssetManager.Get(parent.Context, instructors[position].ImageUrl));
 
-            name.Text = instructors[position].Name;
-            specialty.Text = instructors[position].Specialty;
+            holder.Name.Text = instructors[position].Name;
+            holder.Specialty.Text = instructors[position].Specialty;
 
             return view;
         }
