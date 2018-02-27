@@ -19,3 +19,5 @@ Covers the essentials of the Xamarin platform.
 ## Xamarin Developer Certification ##
 * [AND180] Toolbar and App Bar
 * [XAM370] Diagnosing Memory Management Issues
+* [AND110] ListViews and Adapters in Android
+* [IOS110] Fundamentals of TableViews
