@@ -1,16 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using CoreGraphics;
 using Foundation;
-using System;
 using UIKit;
 
 namespace Mailbox
 {
-    partial class TableViewController : UITableViewController
-	{
-		public TableViewController (IntPtr handle) : base (handle)
-		{
-		}
-
+    public class EmailServerDataSource : UITableViewSource
+    {
         EmailServer emailServer = new EmailServer();
 
         public override nint RowsInSection(UITableView tableview, nint section)
