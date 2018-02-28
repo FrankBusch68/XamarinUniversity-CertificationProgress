@@ -134,6 +134,10 @@
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetailsViewController.cs" />
+    <Compile Include="DetailsViewController.designer.cs">
+      <DependentUpon>DetailsViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmailServerDataSource.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

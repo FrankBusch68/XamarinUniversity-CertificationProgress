@@ -31,7 +31,7 @@ namespace Mailbox
             View.AddConstraint(NSLayoutConstraint.Create(tableView, NSLayoutAttribute.Height,
                 NSLayoutRelation.Equal, View, NSLayoutAttribute.Height, 1, 0));
 
-            tableView.Source = dataSource = new EmailServerDataSource();
+            tableView.Source = dataSource = new EmailServerDataSource(this);
         }
 
         public override void DidReceiveMemoryWarning()
