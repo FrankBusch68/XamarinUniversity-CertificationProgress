@@ -9,7 +9,7 @@ namespace Mailbox
 {
     public class EmailServerDataSource : UITableViewSource
     {
-        EmailServer emailServer = new EmailServer();
+        EmailServer emailServer = new EmailServer(1000);
         ViewController owner;
 
         public EmailServerDataSource(ViewController owner)
@@ -22,14 +22,19 @@ namespace Mailbox
             return emailServer.Email.Count;
         }
 
+        const string reuseId = "emailByCode";
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            UITableViewCell cell = new UITableViewCell(UITableViewCellStyle.Subtitle, null);
-            var item = emailServer.Email[indexPath.Row];
+            UITableViewCell cell = tableView.DequeueReusableCell(reuseId);
+            if (cell == null)
 
-            cell.TextLabel.Font = UIFont.FromName("Avenir-Light", 17); 
-            cell.DetailTextLabel.Font = UIFont.FromName("Avenir-Light", 14);
-            cell.DetailTextLabel.TextColor = UIColor.LightGray;
+            {
+                cell = new UITableViewCell(UITableViewCellStyle.Subtitle, reuseId);
+                cell.TextLabel.Font = UIFont.FromName("Avenir-Light", 17);
+                cell.DetailTextLabel.Font = UIFont.FromName("Avenir-Light", 14);
+                cell.DetailTextLabel.TextColor = UIColor.LightGray;
+            }
+            var item = emailServer.Email[indexPath.Row];
 
             cell.TextLabel.Text = item.Subject;
             cell.DetailTextLabel.Text = item.Body;

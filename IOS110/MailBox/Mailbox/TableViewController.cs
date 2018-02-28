@@ -20,10 +20,12 @@ namespace Mailbox
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            UITableViewCell cell = new UITableViewCell(CGRect.Empty);
+            UITableViewCell cell = tableView.DequeueReusableCell("email");
             var item = emailServer.Email[indexPath.Row];
 
             cell.TextLabel.Text = item.Subject;
+            cell.ImageView.Image = item.GetImage();
+            cell.DetailTextLabel.Text = item.Body;
             return cell;
         }
     }
