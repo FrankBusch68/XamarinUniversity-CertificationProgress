@@ -21,3 +21,4 @@ Covers the essentials of the Xamarin platform.
 * [XAM370] Diagnosing Memory Management Issues
 * [AND110] ListViews and Adapters in Android
 * [IOS110] Fundamentals of TableViews
+* [IOS115] Customizing TableViews
