@@ -15,30 +15,14 @@ namespace WeatherApp
         {
             data = WeatherFactory.GetWeatherData();
 
-            TableView.ContentInset = new UIEdgeInsets(this.TopLayoutGuide.Length, 0, 0, 0);
+            TableView.RegisterClassForCellReuse(typeof(WeatherCell), CELL_ID);
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(CELL_ID);
+            var cell = (WeatherCell)tableView.DequeueReusableCell(CELL_ID);
 
-            if (cell == null)
-            {
-                cell = new UITableViewCell(UITableViewCellStyle.Subtitle, CELL_ID);
-
-                cell.TextLabel.TextColor = UIColor.FromRGB(59, 102, 136);
-                cell.TextLabel.Font = UIFont.SystemFontOfSize(20, UIFontWeight.Bold);
-
-                cell.DetailTextLabel.TextColor = UIColor.FromRGB(0, 142, 255);
-                cell.DetailTextLabel.Font = UIFont.ItalicSystemFontOfSize(12);
-            }
-
-
-            var weather = data[indexPath.Row];
-
-            cell.TextLabel.Text = weather.City;
-            cell.DetailTextLabel.Text = weather.ToString();
-            cell.ImageView.Image = UIImage.FromBundle(weather.CurrentConditions.ToString().ToLower() + ".png");
+            cell.UpdateData(data[indexPath.Row]);
 
             return cell;
         }
@@ -47,10 +31,5 @@ namespace WeatherApp
         {
             return data.Count;
         }
-
-
-
-
-
     }
 }
