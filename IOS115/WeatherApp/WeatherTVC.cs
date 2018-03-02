@@ -20,7 +20,7 @@ namespace WeatherApp
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = (WeatherCell)tableView.DequeueReusableCell(CELL_ID);
+            var cell = (WeatherTableCell)tableView.DequeueReusableCell("cell_id");
 
             cell.UpdateData(data[indexPath.Row]);
 
