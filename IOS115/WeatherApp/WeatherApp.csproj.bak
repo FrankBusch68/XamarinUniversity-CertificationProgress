@@ -82,6 +82,11 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="WeatherCell.cs" />
+    <Compile Include="WeatherTableCell.cs" />
+    <Compile Include="WeatherTableCell.designer.cs">
+      <DependentUpon>WeatherTableCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="WeatherTVC.cs" />
     <Compile Include="WeatherTVC.designer.cs">
       <DependentUpon>WeatherTVC.cs</DependentUpon>
