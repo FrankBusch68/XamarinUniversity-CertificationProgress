@@ -22,3 +22,4 @@ Covers the essentials of the Xamarin platform.
 * [AND110] ListViews and Adapters in Android
 * [IOS110] Fundamentals of TableViews
 * [IOS115] Customizing TableViews
+* [IOS205] Navigation Patterns
