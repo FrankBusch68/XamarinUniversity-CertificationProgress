@@ -17,8 +17,9 @@ namespace GreatQuotes
 		public override void OnCreate()
 		{
             QuoteLoaderFactory.Create = () => new QuoteLoader();
+            ServiceLocator.Instance.Add<ITextToSpeech, TextToSpeechService>();
 
-			base.OnCreate();
+            base.OnCreate();
 		}
 
 		public static void Save()

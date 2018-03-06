@@ -23,6 +23,7 @@ namespace GreatQuotes.UWP
         public App()
         {
             QuoteLoaderFactory.Create = () => new QuoteLoader();
+            ServiceLocator.Instance.Add<ITextToSpeech, TextToSpeechService>();
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;

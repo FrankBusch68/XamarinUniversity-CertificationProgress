@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using GreatQuotes.Data;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -25,6 +26,11 @@ namespace GreatQuotes.UWP
         private void OnEditQuote(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (EditQuotePage), this.DataContext);
+        }
+
+        private void OnSayQuote(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            QuoteManager.Instance.SayQuote((GreatQuote)DataContext);
         }
     }
 }

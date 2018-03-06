@@ -103,6 +103,7 @@
     <Compile Include="QuoteDetailsPage.xaml.cs">
       <DependentUpon>QuoteDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextToSpeechService.Win.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

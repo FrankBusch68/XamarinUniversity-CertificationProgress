@@ -19,7 +19,8 @@
 
         <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords" Margin="20"
                    Text="{Binding QuoteText}"
-                   FontSize="{ThemeResource ListViewHeaderItemThemeFontSize}" />
+                   FontSize="{ThemeResource ListViewHeaderItemThemeFontSize}"
+                   PointerPressed="OnSayQuote" />
         
         <TextBlock Grid.Row="1" Text="{Binding Author}" Foreground="Gray"
                    HorizontalAlignment="Right" Margin="20"

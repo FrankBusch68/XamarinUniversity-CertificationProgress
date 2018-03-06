@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="TableViewSource.cs" />
     <Compile Include="Data\QuoteLoader.cs" />
+    <Compile Include="TextToSpeechService.iOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

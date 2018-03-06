@@ -23,6 +23,22 @@ namespace GreatQuotes.Data
 
         }
 
+        public void SayQuote(GreatQuote quote)
+        {
+            if (quote == null)
+                throw new ArgumentNullException("quote");
+
+            ITextToSpeech tts = ServiceLocator.Instance.Resolve<ITextToSpeech>();
+
+            var text = quote.QuoteText;
+
+            if (!string.IsNullOrWhiteSpace(quote.Author))
+                text += $" by {quote.Author}";
+
+            tts.Speak(text);
+
+        }
+
         public void Save()
         {
             repo.Save(Quotes);
