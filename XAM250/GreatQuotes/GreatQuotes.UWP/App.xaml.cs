@@ -16,13 +16,16 @@ namespace GreatQuotes.UWP
     /// </summary>
     sealed partial class App : Application
     {
+        readonly SimpleContainer container = new SimpleContainer();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
-            QuoteLoaderFactory.Create = () => new QuoteLoader();
+            container.Register<IQuoteLoader, QuoteLoader>();
+            container.Create<QuoteManager>();
             ServiceLocator.Instance.Add<ITextToSpeech, TextToSpeechService>();
 
             this.InitializeComponent();

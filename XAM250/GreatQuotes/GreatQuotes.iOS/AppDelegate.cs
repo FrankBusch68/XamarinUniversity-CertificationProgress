@@ -14,11 +14,13 @@ namespace GreatQuotes
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		public override UIWindow Window { get; set; }
+        readonly SimpleContainer container = new SimpleContainer();
+        public override UIWindow Window { get; set; }
 
 		public override void FinishedLaunching(UIApplication application)
 		{
-            QuoteLoaderFactory.Create = () => new QuoteLoader();
+            container.Register<IQuoteLoader, QuoteLoader>();
+            container.Create<QuoteManager>();
             ServiceLocator.Instance.Add<ITextToSpeech, TextToSpeechService>();
         }
 

@@ -8,8 +8,7 @@ namespace GreatQuotes.Data
 {
     public class QuoteManager
     {
-
-        public static QuoteManager Instance { get; } = new QuoteManager();
+        public static QuoteManager Instance { get; private set; }
 
         readonly IQuoteLoader repo;
         public IList<GreatQuote> Quotes;
@@ -22,6 +21,16 @@ namespace GreatQuotes.Data
             Quotes = repo.Load().ToList();
 
         }
+
+        public QuoteManager(IQuoteLoader loader)
+        {
+            if (Instance != null)
+                throw new Exception("Can only create a single QuoteManager.");
+            Instance = this;
+            this.repo = loader;
+            Quotes = new ObservableCollection<GreatQuote>(loader.Load());
+        }
+
 
         public void SayQuote(GreatQuote quote)
         {
