@@ -23,3 +23,4 @@ Covers the essentials of the Xamarin platform.
 * [IOS110] Fundamentals of TableViews
 * [IOS115] Customizing TableViews
 * [IOS205] Navigation Patterns
+* [XAM250] Patterns for Cross Platform Mobile Development
