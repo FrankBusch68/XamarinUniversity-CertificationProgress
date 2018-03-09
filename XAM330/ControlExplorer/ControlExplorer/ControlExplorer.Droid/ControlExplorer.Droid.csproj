@@ -142,6 +142,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gradient.Droid.cs" />
+    <Compile Include="MyButtonGradientEffect.Droid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyCustomFontEffect.Droid.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

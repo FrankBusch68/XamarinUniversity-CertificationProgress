@@ -15,6 +15,8 @@ namespace ControlExplorer
 
             fontEffect = new LabelFontEffect();
             labelWelcome.Effects.Add(fontEffect);
+
+            buttonClick.Effects.Add(new ButtonGradientEffect());
         }
 
         private void OnButtonClicked(object sender, System.EventArgs e)
