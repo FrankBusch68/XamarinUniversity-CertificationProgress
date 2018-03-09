@@ -25,3 +25,4 @@ Covers the essentials of the Xamarin platform.
 * [IOS205] Navigation Patterns
 * [XAM250] Patterns for Cross Platform Mobile Development
 * [XAM301] Mobile Application Architecture
+* [XAM330] Xamarin.Forms Effects
