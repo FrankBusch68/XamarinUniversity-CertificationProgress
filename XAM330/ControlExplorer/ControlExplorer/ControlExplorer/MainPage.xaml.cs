@@ -6,10 +6,15 @@ namespace ControlExplorer
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+        Effect fontEffect;
+
         int count;
         public MainPage()
         {
             InitializeComponent();
+
+            fontEffect = Effect.Resolve("Xamarin.CustomFontEffect");
+            labelWelcome.Effects.Add(fontEffect);
         }
 
         private void OnButtonClicked(object sender, System.EventArgs e)
@@ -19,7 +24,10 @@ namespace ControlExplorer
 
         private void OnSwitchToggled(object sender, ToggledEventArgs e)
         {
+            labelWelcome.Effects.Remove(fontEffect);
 
+            if (switchEffects.IsToggled)
+                labelWelcome.Effects.Add(fontEffect);
         }
 
         private void OnSliderColorValueChanged(object sender, ValueChangedEventArgs e)
