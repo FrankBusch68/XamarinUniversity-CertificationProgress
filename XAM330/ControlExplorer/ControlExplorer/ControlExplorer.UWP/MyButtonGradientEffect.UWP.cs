@@ -1,4 +1,5 @@
 ﻿using ControlExplorer.UWP;
+using System.ComponentModel;
 using Windows.UI.Xaml.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
@@ -31,6 +32,17 @@ namespace ControlExplorer.UWP
             button.BackgroundColor = oldBrush;
         }
 
+        protected override void OnElementPropertyChanged(PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(e);
+
+            if (Element is Button == false)
+                return;
+
+            if (e.PropertyName == ButtonGradientEffect.GradientColorProperty.PropertyName)
+                SetGradient();
+        }
+
         Windows.UI.Color GetWindowsColor(Color color)
         {
             return Windows.UI.Color.FromArgb((byte)(255 * color.A), (byte)(255 * color.R), (byte)(255 * color.G), (byte)(255 * color.B));
@@ -43,7 +55,7 @@ namespace ControlExplorer.UWP
             var button = Control as FormsButton;
 
             var colorTop = xfButton.BackgroundColor;
-            var colorBottom = Color.Black;
+            var colorBottom = ButtonGradientEffect.GetGradientColor(xfButton);
 
             button.BackgroundColor = Gradient.GetGradientBrush(GetWindowsColor(colorTop), GetWindowsColor(colorBottom));
         }
