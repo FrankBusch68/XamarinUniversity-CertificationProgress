@@ -1,38 +1,61 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
+using Android.Views;
 
 namespace Clock
 {
 	[Activity(Label = "Clock", MainLauncher = true, Icon = "@mipmap/icon")]
-	public class MainActivity : Android.Support.V4.App.FragmentActivity
+	public class MainActivity : Android.Support.V7.App.AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.Main);
 
-			var fragments = new Android.Support.V4.App.Fragment[]
+			var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+			base.SetSupportActionBar(toolbar);
+			SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu_white_24dp);
+			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+			var menu = FindViewById<Android.Support.Design.Widget.NavigationView>(Resource.Id.navigationView);
+			menu.NavigationItemSelected += OnMenuItemSelected;
+
+			Navigate(new TimeFragment());
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			switch (item.ItemId)
 			{
-				new TimeFragment(),
-				new StopwatchFragment(),
-				new AboutFragment()
-			};
+				case Android.Resource.Id.Home:
+				var drawerLayout = FindViewById<Android.Support.V4.Widget.DrawerLayout>(Resource.Id.drawerLayout);
+				drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+				break;
+			}
 
-			var titles = CharSequence.ArrayFromStringArray(new [] { "Time", "Stopwatch", "About" }); 
+			return true;
+		}
 
-			var adapter = new ClockAdapter(base.SupportFragmentManager, fragments, titles);
+		void OnMenuItemSelected(object sender, Android.Support.Design.Widget.NavigationView.NavigationItemSelectedEventArgs e)
+		{
+			switch (e.MenuItem.ItemId)
+			{
+				case Resource.Id.timeMenuItem:      Navigate(new TimeFragment()      ); break;
+				case Resource.Id.stopwatchMenuItem: Navigate(new StopwatchFragment() ); break;
+				case Resource.Id.aboutMenuItem:     Navigate(new AboutFragment()     ); break;
+			}
 
-			var viewPager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewPager);
+			e.MenuItem.SetChecked(true);
 
-			viewPager.Adapter = adapter;
+			var drawerLayout = FindViewById<Android.Support.V4.Widget.DrawerLayout>(Resource.Id.drawerLayout);
+			drawerLayout.CloseDrawer(Android.Support.V4.View.GravityCompat.Start);
+		}
 
-			var tabLayout = FindViewById<Android.Support.Design.Widget.TabLayout>(Resource.Id.tabLayout);
-			tabLayout.SetupWithViewPager(viewPager);
-
-			tabLayout.GetTabAt(0).SetIcon(Resource.Drawable.ic_access_time_white_24dp);
-			tabLayout.GetTabAt(1).SetIcon(Resource.Drawable.ic_timer_white_24dp);
-			tabLayout.GetTabAt(2).SetIcon(Resource.Drawable.ic_info_outline_white_24dp);
+		void Navigate(Android.Support.V4.App.Fragment fragment)
+		{
+			var transaction = base.SupportFragmentManager.BeginTransaction();
+			transaction.Replace(Resource.Id.contentFrame, fragment);
+			transaction.Commit();
 		}
 	}
 }
