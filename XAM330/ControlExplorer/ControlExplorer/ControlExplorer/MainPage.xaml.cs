@@ -13,7 +13,7 @@ namespace ControlExplorer
         {
             InitializeComponent();
 
-            fontEffect = Effect.Resolve("Xamarin.CustomFontEffect");
+            fontEffect = new LabelFontEffect();
             labelWelcome.Effects.Add(fontEffect);
         }
 
