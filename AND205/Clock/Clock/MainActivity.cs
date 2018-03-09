@@ -10,29 +10,19 @@ namespace Clock
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.Main);
-		
-			var tabLayout = FindViewById<Android.Support.Design.Widget.TabLayout>(Resource.Id.tabLayout);
 
-			tabLayout.TabSelected += OnTabSelected;
-
-			Navigate(new TimeFragment());
-		}
-
-		void OnTabSelected(object sender, Android.Support.Design.Widget.TabLayout.TabSelectedEventArgs e)
-		{
-			switch (e.Tab.Position)
+			var fragments = new Android.Support.V4.App.Fragment[]
 			{
-				case 0: Navigate(new TimeFragment());      break;
-				case 1: Navigate(new StopwatchFragment()); break;
-				case 2: Navigate(new AboutFragment());     break;
-			}
-		}
+				new TimeFragment(),
+				new StopwatchFragment(),
+				new AboutFragment()
+			};
 
-		void Navigate(Android.Support.V4.App.Fragment fragment)
-		{
-			var transaction = base.SupportFragmentManager.BeginTransaction();
-			transaction.Replace(Resource.Id.contentFrame, fragment);
-			transaction.Commit();
+			var adapter = new ClockAdapter(base.SupportFragmentManager, fragments);
+
+			var viewPager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewPager);
+
+			viewPager.Adapter = adapter;
 		}
 	}
 }

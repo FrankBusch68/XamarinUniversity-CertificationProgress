@@ -99,6 +99,7 @@
     <Compile Include="AboutFragment.cs" />
     <Compile Include="StopwatchFragment.cs" />
     <Compile Include="TimeFragment.cs" />
+    <Compile Include="ClockAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
